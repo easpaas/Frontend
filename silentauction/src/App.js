@@ -1,24 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState,useContext} from 'react';
+import {Route,Switch, Redirect} from 'react-router-dom'
+
+import {UserContext} from './utils/context'
+
 import './App.css';
+import Nav from './components/Nav'
+import Landing from './components/Landing'
+import Login from './components/Login'
+import Seller from './components/Seller'
+import Bidder from './components/Bidder'
+
+import PrivateRoute from './utils/PrivateRoute'
+
 
 function App() {
+  const [userData,setUserData]= useState({})
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <UserContext.Provider value={{userData}}>
+         
+      <Switch>
+
+    {localStorage.getItem('seler') === true
+     ? <PrivateRoute path='/home' component={Seller}/>
+    : <PrivateRoute path="/home" component={Bidder}/>
+    }
+    <Route path='/login' component={Login}/>
+    <Route path='/welcome' component={Landing} />
+    <Redirect to='/welcome'/>
+    
+      </Switch>
+      </UserContext.Provider>
+     
+
     </div>
   );
 }
