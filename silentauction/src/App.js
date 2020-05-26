@@ -22,7 +22,7 @@ function App() {
          
       <Switch>
 
-    {localStorage.getItem('role') === false
+    {localStorage.getItem('seler') === true
      ? <PrivateRoute path='/home' component={Seller}/>
     : <PrivateRoute path="/home" component={Bidder}/>
     }
