@@ -23,9 +23,7 @@ export default function CreateItemForm() {
     },
     [formValue])
 
-    const changeHandle = evt=>{
-        setformValue({...formValue,[evt.target.name] : evt.target.value})
-    }
+  
     const formScheme = Yup.object().shape({
         title: Yup 
         .string()
@@ -49,6 +47,19 @@ export default function CreateItemForm() {
 
 
     })
+    const changeHandle = evt=>{
+        evt.persist()
+        Yup.reach(formScheme,evt.target.name)
+        .validate(evt.target.value)
+        .then(()=>{
+            setErrors({...erros,[evt.target.name]:''})
+        })
+        .catch(err=>{
+            setErrors({...erros,[evt.target.name]:err.errors[0]})
+        })
+        
+        setformValue({...formValue,[evt.target.name] : evt.target.value})
+    }
 
 
     return (
