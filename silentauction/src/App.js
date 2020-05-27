@@ -1,7 +1,8 @@
-import React,{useState,useContext} from 'react';
+import React,{useState,useContext, useEffect} from 'react';
 import {Route,Switch, Redirect} from 'react-router-dom'
+import axios from 'axios'
 
-import {UserContext} from './utils/context'
+import {UserContext,GlobalContext, SellerContext, BidderContext} from './utils/context'
 
 import './App.css';
 import Nav from './components/Nav'
@@ -15,24 +16,34 @@ import PrivateRoute from './utils/PrivateRoute'
 
 function App() {
   const [userData,setUserData]= useState({})
+  const [globalData,setglobalData]=useState({})
+  const [sellerData,setSellerData] =useState({})
+  const [bidderData,setBidderData] =useState({})
+
+
 
   return (
     <div className="App">
-      <UserContext.Provider value={{userData}}>
-         
-      <Switch>
+      <GlobalContext.Provider value={{globalData}}> 
+          <UserContext.Provider value={{userData}}>
+            <SellerContext.Provider value={{sellerData}}>
+              <BidderContext.Provider value={{bidderData}}>
+                  
+                <Switch>
 
-    {localStorage.getItem('seler') === true
-     ? <PrivateRoute path='/home' component={Seller}/>
-    : <PrivateRoute path="/home" component={Bidder}/>
-    }
-    <Route path='/login' component={Login}/>
-    <Route path='/welcome' component={Landing} />
-    <Redirect to='/welcome'/>
-    
-      </Switch>
-      </UserContext.Provider>
-     
+                  {localStorage.getItem('seler') === true
+                  ? <PrivateRoute path='/home' component={Seller}/>
+                  : <PrivateRoute path="/home" component={Bidder}/>
+                  }
+                  <Route path='/login' component={Login}/>
+                  <Route path='/welcome' component={Landing} />
+                  <Redirect to='/welcome'/>
+              
+                </Switch>
+              </BidderContext.Provider>
+            </SellerContext.Provider>
+          </UserContext.Provider>
+      </GlobalContext.Provider>
 
     </div>
   );
