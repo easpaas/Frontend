@@ -15,7 +15,7 @@ import PrivateRoute from './utils/PrivateRoute'
 
 
 function App() {
-  const [userData,setUserData]= useState({})
+  const [userData,setUserData]= useState({username:'bidguy',password:'thiss', seller:false , bids:[],watchlist:[]})
   const [globalData,setglobalData]=useState({})
   const [sellerData,setSellerData] =useState({})
   const [bidderData,setBidderData] =useState({})
@@ -31,9 +31,9 @@ function App() {
                   
                 <Switch>
 
-                  {localStorage.getItem('seler') === true
-                  ? <PrivateRoute path='/home' component={Seller}/>
-                  : <PrivateRoute path="/home" component={Bidder}/>
+                  {localStorage.getItem('seller') === 'true'
+                  ? <PrivateRoute path={`/home/${userData.username}`} component={Seller}/>
+                  : <PrivateRoute path={`/home/${userData.username}`} component={Bidder}/>
                   }
                   <Route path='/login' component={Login}/>
                   <Route path='/welcome' component={Landing} />

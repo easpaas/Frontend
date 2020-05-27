@@ -1,15 +1,14 @@
 import React, {useContext} from 'react'
-import {BidderContext,UserContext} from '../utils/context'
-import {BrowserRouter,useLocation,Route,Link} from 'react-router-dom'
+import {BidderContext,UserContext,GlobalContext} from '../utils/context'
+import {BrowserRouter,Route,Link,match} from 'react-router-dom'
 
 import BidderWatchList from './BidderWatchList'
 import AllBids from './AllBids'
 import Bids from './Bids'
-export default function Bidder() {
+export default function Bidder(props) {
     const userData = useContext(UserContext)
     const bidderData = useContext(BidderContext)
-    const {pathname} = useLocation()
-
+    const globalData = useContext(GlobalContext)
 
     return (
         <div>
@@ -19,15 +18,28 @@ export default function Bidder() {
 
                 </header>
                 <BrowserRouter>
+
                 <nav>
-                        <Link to={`/${pathname}/watchlist`}>Watch List </Link>
-                        <Link to={`/${pathname}/all-bids`}>All Bids</Link>
+                <Link to={`/${userData.userData.username}/watchlist`} > WatchList</Link>
+                <Link to={`/dashboard`} > Dashboard</Link>
+                <Link to={props.match.path}> Home </Link>
 
                 </nav>
 
-                    <Route path={`/:id/watchlist`} component={BidderWatchList}/>
-                    <Route path={`/:id/all-bids`} component={AllBids} />
-                    <Route path={`/bid/:id`} component={Bids} />
+                    <Route path={`/:id/watchlist`} render ={
+                        (props)=>{
+                            return <BidderWatchList  data={{props,userData,globalData,bidderData}} />}}/>
+                            
+                    <Route path={`/dashboard`} render ={
+                        (props)=>{
+                            return <AllBids
+                            data={{props,userData,globalData,bidderData}}
+                              />
+                             }}/>
+
+                    <Route path={`/bid/:id`} render ={
+                        (props)=>{
+                            return <Bids  data={{props,userData,globalData,bidderData}} />}} />
                 
                 </BrowserRouter>
             </div>
