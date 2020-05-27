@@ -2,37 +2,48 @@ import React from 'react'
 import {axiosWithAuth} from './axiosWithAuth'
 
 export function getItems(cb){
-    axiosWithAuth().get('/')
+    axiosWithAuth().get('/api/items/')
     .then(res=>cb(res.data))
     .catch(err=>console.log(err))
 }
 
 export function getSellerItems (id,cb){
-    axiosWithAuth().get( `/seller/${id}`  )
+    axiosWithAuth().get( `/api/items/seller/${id}`  )
     .then(res=>cb(res.data))
     .catch(err=>console.log(err))
 }
 
 export function findItembyId(id,cb){
-    axiosWithAuth().get(`/${id}`)
+    axiosWithAuth().get(`/api/items/${id}`)
     .then(res=>cb(res.data))
     .catch(err=>console.log(err))
 }
 
 export function updateItem(id,cb,data){
-    axiosWithAuth().put(   `/${id}`,data  )
+    axiosWithAuth().put(   `api/items/${id}`,data  )
     .then(res=>cb(res.data))
     .catch(err=>console.log(err))
 }
 
 export function deleteItem(id,cb,){
-    axiosWithAuth().delete(`/${id}`)
+    axiosWithAuth().delete(`api/items/${id}`)
     .then(res=>cb(res.data))
     .catch(err=>console.log(err))
 }
 
 export function postItem(data,cb){
-    axiosWithAuth().post('/',data)
+    axiosWithAuth().post('api/items/',data)
     .then(res=>cb(res.data))
     .catch(err=>console.log(err))
 }
+
+const sellerfunctions = {
+    getItems,
+    getSellerItems,
+    findItembyId,
+    updateItem,
+    deleteItem,
+    postItem
+}
+
+export default sellerfunctions

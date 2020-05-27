@@ -31,7 +31,7 @@ export default function Seller(props) {
             userData ={userData}
             showMortal={showMortal}
              setShowMortal={setShowMortal} 
-             data={{userData,sellerData}}
+             data={{userData,sellerData,props}}
              setShowSide={setShowSide} />
 
             :

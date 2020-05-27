@@ -1,6 +1,6 @@
 import React, {useContext} from 'react'
 import {BidderContext,UserContext,GlobalContext} from '../utils/context'
-import {BrowserRouter,Route,Link,match} from 'react-router-dom'
+import {BrowserRouter,Route,Link,match,useHistory} from 'react-router-dom'
 
 import BidderWatchList from './BidderWatchList'
 import AllBids from './AllBids'
@@ -9,6 +9,7 @@ export default function Bidder(props) {
     const userData = useContext(UserContext)
     const bidderData = useContext(BidderContext)
     const globalData = useContext(GlobalContext)
+    const {push,go} = useHistory()
 
     return (
         <div>
@@ -23,6 +24,17 @@ export default function Bidder(props) {
                 <Link to={`/${userData.userData.username}/watchlist`} > WatchList</Link>
                 <Link to={`/dashboard`} > Dashboard</Link>
                 <Link to={props.match.path}> Home </Link>
+                <a onClick={()=>{
+                    localStorage.removeItem('token')
+                    push('/welcome')
+                    }}> Logoout</a>
+
+                    
+                    <button onClick={()=>{
+                    localStorage.setItem('seller','true')
+                    go()
+                }}> Switch To Seller </button>
+                
 
                 </nav>
 

@@ -1,9 +1,11 @@
 import React from 'react'
 import CreateMortal from './CreateMortal'
+import {useHistory, Redirect} from 'react-router-dom'
 
 
 export default function UserSidePanel(props) {
     const {data, setShowMortal,setShowSide,showMortal} = props
+    const {push,location,go} = useHistory()
     return (
         <div>
             <button onClick={()=>setShowSide(false)} className='closeBtn'>X</button>
@@ -18,8 +20,17 @@ export default function UserSidePanel(props) {
                 </button>
                 {showMortal ? <CreateMortal data={data} /> : null}
 
-                <div id='openItems'  className='sideItem' > Open Bids</div>
-                <div id='closedItems'  className='sideItem' > Closed Bids </div>
+                <button onClick={()=>{
+                    localStorage.setItem('seller','false')
+                    go()
+                }}> Switch To Bidder </button>
+
+                <a onClick={()=>{
+                    localStorage.removeItem('token')
+                    push('/welcome')
+                    }}> Logoout
+                </a>
+
 
             </div>
             
