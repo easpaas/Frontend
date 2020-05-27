@@ -1,19 +1,23 @@
 import React,{useContext,useState} from 'react'
-import {UserContext} from '../utils/context'
+import {UserContext,GlobalContext,SellerContext} from '../utils/context'
 
 import UserSidePanel from './UserSidePanel'
 import SellList from './SellList'
 import Nav from './Nav'
+import CreateMortal from './CreateMortal'
 
 
-export default function Seller() {
+export default function Seller(props) {
     const userData = useContext(UserContext)
+    const globalData= useContext(GlobalContext)
+    const sellerData= useContext(SellerContext)
+
+
     const [showSide,setShowSide] = useState(false)
     const [showMortal,setShowMortal] = useState(false)
 
     return (
         <div>
-            < Nav />
             <div>
             {!showSide ?
             <button onClick={()=>setShowSide(true)}>
@@ -27,14 +31,17 @@ export default function Seller() {
             userData ={userData}
             showMortal={showMortal}
              setShowMortal={setShowMortal} 
+             data={{userData,sellerData}}
              setShowSide={setShowSide} />
+
             :
             null
             }
+            
             </div>
 
             <div>
-                <SellList userData={userData} />
+                <SellList data={{props,userData,globalData,sellerData}} />
             
             </div>
 

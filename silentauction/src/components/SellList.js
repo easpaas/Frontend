@@ -3,12 +3,13 @@ import axios from 'axios'
 import SellerItems from './SellerItems'
 
 export default function SellList(props) {
+    const {data} = props
+    const {userData} = data
    
     return (
         <div>
-            {props.userData.selling.map((item,index)=>{
-                return <SellerItems key={index} item={item}/>
-            })}
+        <h2> {userData.userData.username} </h2>
+           
         </div>
     )
 }

@@ -64,8 +64,8 @@ export default function CreateItemForm() {
 
     return (
         <form>
-            <input name='title'type='text ' />
-            <select onSelect={changeHandle} name='category'>
+            <input onChange={changeHandle} value={formValue.title} name='title'type='text ' />
+            <select onChange={changeHandle} name='category'>
                 <option >select category</option>
                 <option value='electronics'>Electronics</option>
                 <option value='home'>Home and Furniture</option>
@@ -77,7 +77,9 @@ export default function CreateItemForm() {
 
             <input  onChange={changeHandle} type='date' name='dateOpened'/>
             <input  onChange={changeHandle} type='date' name='dateClosed'/>
-            <input  onChange={changeHandle} type='number' name='startingBid'/>
+            <input  onChange={changeHandle} type='decimal' name='startingBid'/>
+
+            <button> send </button>
 
             
         </form>

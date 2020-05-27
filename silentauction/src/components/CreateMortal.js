@@ -3,10 +3,10 @@ import styled from 'styled-components'
 
 import CreateItemForm from './CreateItemForm'
 
-export default function CreateMortal() {
+export default function CreateMortal(props) {
     return (
         <div>
-            <CreateItemForm /> 
+            <CreateItemForm data ={props.data} /> 
             
         </div>
     )
