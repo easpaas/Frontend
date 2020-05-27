@@ -15,11 +15,22 @@ export default function Seller() {
         <div>
             < Nav />
             <div>
-            < UserSidePanel 
+            {!showSide ?
+            <button onClick={()=>setShowSide(true)}>
+                Show Nav
+            </button>   
+            :
+            null 
+        }    
+
+            {showSide ? < UserSidePanel 
             userData ={userData}
             showMortal={showMortal}
              setShowMortal={setShowMortal} 
              setShowSide={setShowSide} />
+            :
+            null
+            }
             </div>
 
             <div>

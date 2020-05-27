@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import * as Yup from 'yup'
 
 export default function CreateItemForm() {
@@ -65,7 +65,7 @@ export default function CreateItemForm() {
     return (
         <form>
             <input name='title'type='text ' />
-            <select onChange={changeHandle} name='category'>
+            <select onSelect={changeHandle} name='category'>
                 <option >select category</option>
                 <option value='electronics'>Electronics</option>
                 <option value='home'>Home and Furniture</option>
