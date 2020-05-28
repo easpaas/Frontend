@@ -1,15 +1,20 @@
-import React, {useContext} from 'react'
+import React, {useContext,useState,useEffect} from 'react'
 import {BidderContext,UserContext,GlobalContext} from '../utils/context'
 import {BrowserRouter,Route,Link,match,useHistory} from 'react-router-dom'
 
 import BidderWatchList from './BidderWatchList'
 import AllBids from './AllBids'
 import Bids from './Bids'
+import BidFull from './BidFull'
 export default function Bidder(props) {
     const userData = useContext(UserContext)
     const bidderData = useContext(BidderContext)
     const globalData = useContext(GlobalContext)
+
     const {push,go} = useHistory()
+
+
+
 
     return (
         <div>
@@ -29,7 +34,7 @@ export default function Bidder(props) {
                     push('/welcome')
                     }}> Logoout</a>
 
-                    
+
                     <button onClick={()=>{
                     localStorage.setItem('seller','true')
                     go()
@@ -51,7 +56,7 @@ export default function Bidder(props) {
 
                     <Route path={`/bid/:id`} render ={
                         (props)=>{
-                            return <Bids  data={{props,userData,globalData,bidderData}} />}} />
+                            return <BidFull  data={{props,userData,globalData,bidderData}} />}} />
                 
                 </BrowserRouter>
             </div>

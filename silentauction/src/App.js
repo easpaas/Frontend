@@ -14,7 +14,7 @@ import Bidder from './components/Bidder'
 import PrivateRoute from './utils/PrivateRoute'
 import {UserContext,GlobalContext, SellerContext, BidderContext} from './utils/context'
 
-import sellerfunctions from './utils/itemRouteFunctions'
+import itemFunctions from './utils/itemRouteFunctions'
 
 
 function App() {
@@ -22,15 +22,29 @@ function App() {
   const [userData,setUserData]= useState({username:'bidguy',password:'thiss', seller:false , bids:[],watchlist:[]})
   const [globalData,setglobalData]=useState({})
   const [sellerData,setSellerData] =useState({})
-  const [bidderData,setBidderData] =useState({})
+  const [bidderData,setBidderData] =useState({bids:[{
+    id:1,
+    title:'ricks ticks',
+    startingBid:300,
+    closeDate:'12/4/2020',
+    description:'smells great',
+    category:'outside',
+    bidders:[],
+    currentBid:300
+    
+
+
+}],
+
+})
 
 
 
   return (
     <div className="App">
-      <GlobalContext.Provider value={{globalData,setglobalData}}> 
+      <GlobalContext.Provider value={{globalData,setglobalData,itemFunctions}}> 
           <UserContext.Provider value={{userData,setUserData}}>
-            <SellerContext.Provider value={{sellerData,setSellerData,sellerfunctions}}>
+            <SellerContext.Provider value={{sellerData,setSellerData}}>
               <BidderContext.Provider value={{bidderData,setBidderData}}>
                   
                 <Switch>

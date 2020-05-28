@@ -7,8 +7,7 @@ export default function Bids(props) {
             <h2>{item.title} </h2>
             <h3> {item.startingBid} </h3>
             <h4>{item.closeDate} </h4>
-            <p> {item.description} </p>
-            <h5> {item.category} </h5>
+            <h6> {item.category} </h6>
         {/* bidders */}
             <div>
 

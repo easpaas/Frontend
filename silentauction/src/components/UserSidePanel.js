@@ -28,7 +28,7 @@ export default function UserSidePanel(props) {
                 <a onClick={()=>{
                     localStorage.removeItem('token')
                     push('/welcome')
-                    }}> Logoout
+                    }}> Log out
                 </a>
 
 

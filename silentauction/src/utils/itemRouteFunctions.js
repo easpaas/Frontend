@@ -1,10 +1,10 @@
 import React from 'react'
 import {axiosWithAuth} from './axiosWithAuth'
 
-export function getItems(cb){
+export function getItems(cb,state,title){
     axiosWithAuth().get('/api/items/')
-    .then(res=>cb(res.data))
-    .catch(err=>console.log(err))
+    .then(res=>cb({...state,[title]:res.data}))
+    .catch(err=>console.log(err.message))
 }
 
 export function getSellerItems (id,cb){
@@ -37,7 +37,7 @@ export function postItem(data,cb){
     .catch(err=>console.log(err))
 }
 
-const sellerfunctions = {
+const itemFunctions = {
     getItems,
     getSellerItems,
     findItembyId,
@@ -46,4 +46,4 @@ const sellerfunctions = {
     postItem
 }
 
-export default sellerfunctions
+export default itemFunctions

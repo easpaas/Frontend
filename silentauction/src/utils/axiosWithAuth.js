@@ -10,10 +10,3 @@ export const axiosWithAuth = ()=>{
     })
 }
 
-export function axiosAuthreq(path,type,cb){
-    axiosWithAuth()[type](path)
-    .then(res=>cb(res.data))
-    .catch(err=>console.log(err))
-}
-
- 

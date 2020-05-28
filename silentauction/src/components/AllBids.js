@@ -1,9 +1,30 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import Bids from './Bids'
 import { Link } from 'react-router-dom'
 
-export default function AllBids() {
-    const bids = useState([])
+export default function AllBids(props) {
+    const {getItems} = props.data.globalData.itemFunctions
+
+    const {bidderData,setBidderData} = props.data.bidderData
+    
+    // const [bids,setBids] = useState([{
+    //     id:1,
+    //     title:'ricks ticks',
+    //     startingBid:300,
+    //     closeDate:'12/4/2020',
+    //     description:'smells great',
+    //     category:'outside',
+    //     bidders:[],
+        
+
+
+    // }])
+    console.log(getItems)
+
+    useEffect(()=>{
+        getItems(setBidderData,bidderData,'bids')
+
+    },[])
     return (
         <div>
                 <select onSelect={()=>{}} name='categorySearch'>
@@ -15,9 +36,9 @@ export default function AllBids() {
                 </select>
 
                 <div>
-                    {bids.map((item,index)=>{
-                        return <Link >
-                            <Bids item={item} />
+                    {bidderData.bids.map((item,index)=>{
+                        return <Link to={`/bid/${item.id}`} >
+                            <Bids item={item} key={index}  />
                             </Link>
                     })}
 
