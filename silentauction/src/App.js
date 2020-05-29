@@ -19,7 +19,14 @@ import itemFunctions from './utils/itemRouteFunctions'
 
 function App() {
   
-  const [userData,setUserData]= useState({username:'bidguy',password:'thiss', seller:false , bids:[],watchlist:[]})
+  const [userData,setUserData]= useState({
+    username:'bidguy',
+    password:'thiss',
+    //  seller:"false" , 
+     createdBids:[{
+       id:2,
+      startingBid:200,title:'fishnet',description:'looks good',category:'electronics',bidders:[]}],
+     watchlist:[]})
   const [globalData,setglobalData]=useState({})
   const [sellerData,setSellerData] =useState({})
   const [bidderData,setBidderData] =useState({bids:[{
@@ -54,8 +61,7 @@ function App() {
                   : <PrivateRoute path={`/home/${userData.username}`} component={Bidder}/>
                   }
                   <Route path='/login' component={Login}/>
-                  <Route path='/welcome' component={Landing} />
-                  <Redirect to='/welcome'/>
+                  <Redirect to='/login'/>
               
                 </Switch>
               </BidderContext.Provider>

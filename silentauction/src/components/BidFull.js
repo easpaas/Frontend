@@ -18,8 +18,6 @@ export default function BidFull(props) {
     const user = props.data.userData.userData.username
    
 
-    // }}
-    const vave= String.prototype.replace(user,1,'*')
     useEffect(()=>{
         findItembyId(setItem)
         console.log('heyy you')

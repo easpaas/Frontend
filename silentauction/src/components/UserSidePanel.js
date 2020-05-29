@@ -1,35 +1,20 @@
 import React from 'react'
 import CreateMortal from './CreateMortal'
-import {useHistory, Redirect} from 'react-router-dom'
+import {useHistory, Redirect,Link} from 'react-router-dom'
 
 
 export default function UserSidePanel(props) {
-    const {data, setShowMortal,setShowSide,showMortal} = props
-    const {push,location,go} = useHistory()
+    const {data} = props
     return (
         <div>
-            <button onClick={()=>setShowSide(false)} className='closeBtn'>X</button>
-            <h3 id='userName' className='sideItem' > {data.userData.userData.username} </h3>
+            
+            <h3 id='userName' className='sideItem' > Create A New Bid</h3>
 
             <div>
-                <button id='createItem' 
-                onClick={()=>setShowMortal(!showMortal)}  
+                <CreateMortal data={data} /> 
 
-                className='sideItem' >
-                     Create Item 
-                </button>
-                {showMortal ? <CreateMortal data={data} /> : null}
-
-                <button onClick={()=>{
-                    localStorage.setItem('seller','false')
-                    go()
-                }}> Switch To Bidder </button>
-
-                <a onClick={()=>{
-                    localStorage.removeItem('token')
-                    push('/welcome')
-                    }}> Log out
-                </a>
+                
+                
 
 
             </div>
