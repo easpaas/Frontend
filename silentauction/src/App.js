@@ -7,7 +7,6 @@ import axios from 'axios'
 import './App.css';
 import Nav from './components/Nav'
 import Landing from './components/Landing'
-import Login from './components/Login'
 import Register from './components/Register'
 import Seller from './components/Seller'
 import Bidder from './components/Bidder'
@@ -17,6 +16,22 @@ import PrivateRoute from './utils/PrivateRoute'
 import {UserContext,GlobalContext, SellerContext, BidderContext} from './utils/context'
 
 import itemFunctions from './utils/itemRouteFunctions'
+
+
+
+
+const initialFormValues= {
+  username: '',
+  email:'',
+  password: '',
+  /*text inputs*/
+  seller:'false',
+  /*seller status could be radio or dropdown*/
+
+
+
+}
+
 
 
 function App() {
