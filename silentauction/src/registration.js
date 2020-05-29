@@ -82,7 +82,7 @@ function Register(props) {
             <label>Register below:</label>
             <label><h1>Name: <input name="name" type="text" value={formValues.username} onChange={onChange} /> </h1></label>
             <label><h1>Password:<input name="password" type="password" value={formValues.password} onChange={onChange} /></h1></label>
-            <label><h1>Seller?  <input name="seller"  type="checkbox" onChange={onChange} /> </h1></label>
+            <label><h1>Seller?  <input name="seller" value="true" type="checkbox" onChange={onChange} /> </h1></label>
             <button onSubmit={onSubmit}> Register!</button>
             {/*The registration form!*/}
         </form>
