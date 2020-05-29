@@ -33,8 +33,11 @@ function LogMeIn(props) {
           [event.target.name]: event.target.value
       });
   }
-  const onSubmit = (event) => {
-      console.log(event)
+  const onClickhandl = (event) => {
+      event.preventDefault()
+      axios.post('http://localhost:5000/api/login',formValues)
+      .then(res=>console.log(res))
+      .catch(err=>console.log(err))
   }
   const [errors, setErrors] = useState({
       name: "",
@@ -43,9 +46,9 @@ function LogMeIn(props) {
   return (
       <form className="Login">
           <h1>Log in!</h1>
-          <h3>Name:<input name="name" type="text" value={formValues.username} onChange={onChange} /></h3>
+          <h3>Name:<input name="username" type="text" value={formValues.username} onChange={onChange} /></h3>
           <h3>Password:<input name="password" type="password" value={formValues.password} onChange={onChange} /></h3>
-          <button onSubmit={onSubmit}>Log in</button>
+          <button onClick={onClickhandl}>Log in</button>
           {/*The login form!*/}
       </form>
   )
