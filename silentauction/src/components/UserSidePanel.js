@@ -20,11 +20,7 @@ export default function UserSidePanel(props) {
                 </button>
                 {showMortal ? <CreateMortal data={data} /> : null}
 
-                <button onClick={()=>{
-                    localStorage.setItem('seller','false')
-                    go()
-                }}> Switch To Bidder </button>
-
+                
                 <a onClick={()=>{
                     localStorage.removeItem('token')
                     push('/welcome')
