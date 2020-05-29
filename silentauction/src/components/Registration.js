@@ -51,19 +51,13 @@ function Register(props) {
 
 
     }
-    const onSubmit = (event) => {
-       console.log(event.target.seller)
+    const onSubmitHandle = (event) => {
+    //    console.log(event.target.seller)
         event.preventDefault();
-        axios.post('https://silent-auction2-backend.herokuapp.com/api/auth/register', {
-            name: formValues.name,
-            password: formValues.password,
-            seller: formValues.seller
-        })
+        axios.post('http://localhost:5000/api/register', formValues)
             .then((response) => {
                 console.log(response);
-            }, (error) => {
-                console.log(error);
-            })
+            }) 
             .catch(function (error) {
                 console.log(error);
             });
@@ -83,7 +77,7 @@ function Register(props) {
             <label><h1>Name: <input name="name" type="text" value={formValues.username} onChange={onChange} /> </h1></label>
             <label><h1>Password:<input name="password" type="password" value={formValues.password} onChange={onChange} /></h1></label>
             <label><h1>Seller?  <input name="seller" value="true" type="checkbox" onChange={onChange} /> </h1></label>
-            <button onSubmit={onSubmit}> Register!</button>
+            <button onClick={onSubmitHandle}> Register!</button>
             {/*The registration form!*/}
         </form>
     )
