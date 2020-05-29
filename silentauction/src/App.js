@@ -20,7 +20,11 @@ import itemFunctions from './utils/itemRouteFunctions'
 
 
 function App() {
-  
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [registering, setRegistering] = useState({});
+  const [loggingIn, setLoggingIn] = useState(false);
+  const [formValues, setFormValues] = useState(initialFormValues);
+  const [disabled, setDisabled] = useState(false);
   const [userData,setUserData]= useState({
     username:'bidguy',
     password:'thiss',
