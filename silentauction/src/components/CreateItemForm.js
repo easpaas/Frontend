@@ -44,7 +44,7 @@ const Form = styled.form `
 export default function CreateItemForm(props) {
     const {postItem} = props.data.globalData.itemFunctions
     const {push} = useHistory()
-    const initDate =new Date()
+    
     const initial = {
         title:'',
         category:'',
@@ -79,16 +79,15 @@ export default function CreateItemForm(props) {
         .notRequired()
         .max(140,'You have exceded the limit for characters in description'),
         openDate: Yup
-        .date()
+        .string()
         .required('You must chose a open date '),
         closeDate: Yup
-        .date()
+        .string()
         
         .required('You must choose a day for bidding to close '),
         startingBid: Yup
-        .number()
+        .number('must enter a number')
         .required('Must enter a start date greater than 0')
-        .moreThan(0,'Cannot set bid for 0')
 
 
     })
@@ -110,6 +109,7 @@ export default function CreateItemForm(props) {
     return (
         <Form>
             <input placeholder='title' onChange={changeHandle} value={formValue.title} name='title'type='text ' />
+            
             <select onChange={changeHandle} name='category'>
                 <option >select category</option>
                 <option value='electronics'>Electronics</option>
@@ -126,6 +126,7 @@ export default function CreateItemForm(props) {
 
 
             </div>
+           
             
             <button onClick={()=> {
                 postItem(formValue,console.log)
