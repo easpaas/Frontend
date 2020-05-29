@@ -1,5 +1,5 @@
 import React,{useState,useContext, useEffect} from 'react';
-import {Route,Switch, Redirect} from 'react-router-dom'
+import {Route,Switch, Redirect,Link} from 'react-router-dom'
 import axios from 'axios'
 
 
@@ -7,10 +7,10 @@ import axios from 'axios'
 import './App.css';
 import Nav from './components/Nav'
 import Landing from './components/Landing'
-import Register from './components/Register'
+import Register from './components/Registration'
 import Seller from './components/Seller'
 import Bidder from './components/Bidder'
-import LogMeIn from './components/LogMeIn'
+import LogMeIn from './components/Login'
 
 import PrivateRoute from './utils/PrivateRoute'
 import {UserContext,GlobalContext, SellerContext, BidderContext} from './utils/context'
@@ -74,14 +74,22 @@ function App() {
           <UserContext.Provider value={{userData,setUserData}}>
             <SellerContext.Provider value={{sellerData,setSellerData}}>
               <BidderContext.Provider value={{bidderData,setBidderData}}>
+
+              <nav>
+                    <Link to='/login'>Login </Link>
+                    <Link to='/register'>Register</Link>
+                    <a href='https://xenodochial-curie-b3eb5b.netlify.app'>home</a>
+                  </nav>
+
                   
                 <Switch>
+                  
 
                   {localStorage.getItem('seller') === 'true'
                   ? <PrivateRoute path={`/home/${userData.username}`} component={Seller}/>
                   : <PrivateRoute path={`/home/${userData.username}`} component={Bidder}/>
                   }
-                  <Route path='/login' component={LogMeIN}/>
+                  <Route path='/login' component={LogMeIn}/>
                   <Route path='/register' component={Register}/>
                   <Redirect to='/login'/>
               
