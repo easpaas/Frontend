@@ -59,41 +59,38 @@ export default function Seller(props) {
             <BrowserRouter>
             <nav>
                 <Link className='navItem' to='/seller-list'>Seller List</Link>
+
+                <Link className='navItem' to='/seller/create'>
+                    Create Bid
+                </Link>
+                
+
                 <Link className='navItem' to={`/home/${userData.userData.username}`}>Home</Link>
-                <Link className='navItem' onClick={()=>{
-                    localStorage.setItem('seller','false')
-                    go()
-                }}> Switch To Bidder
+
+
+
+                <Link className='navItem' onClick={() => {
+                            localStorage.setItem('seller', 'false')
+                            go()
+                        }}> Switch To Bidder
                  </Link>
+
+                  <Link className='navItem' onClick={()=>{
+                    localStorage.removeItem('token')
+                    push('/welcome')
+                    }}> Log out
+                </Link>
     
                     
-                    {!showSide ?
-                        <Link className='navItem' onClick={() => setShowSide(true)}>
-                            Show Nav
-                        </Link>
-                        :
-                        null
-                    }    
+                   
 
-                        <div>
-
-                            {showSide ?
-
-                                < UserSidePanel
-                                    showMortal={showMortal}
-                                    setShowMortal={setShowMortal}
-                                    data={{ userData, sellerData, globalData }}
-                                    setShowSide={setShowSide} />
-
-                                :
-                                null
-                            }
-                        </div>
+                        
                 
             </nav>
             
 
             <main> 
+                       
                 <Route path='/seller-list'>
                     <SellList data={{props,userData,globalData,sellerData}} />
                 </Route>
@@ -101,6 +98,14 @@ export default function Seller(props) {
                 <Route path='/seller-item/:id'>
                     <SellItemFull data={{props,userData,globalData,sellerData}} />
 
+                </Route>
+
+                <Route path='/seller/create'>
+                            < UserSidePanel
+                                showMortal={showMortal}
+                                setShowMortal={setShowMortal}
+                                data={{ userData, sellerData, globalData }}
+                                setShowSide={setShowSide} />
                 </Route>
 
 

@@ -61,8 +61,7 @@ function App() {
                   : <PrivateRoute path={`/home/${userData.username}`} component={Bidder}/>
                   }
                   <Route path='/login' component={Login}/>
-                  <Route path='/welcome' component={Landing} />
-                  <Redirect to='/welcome'/>
+                  <Redirect to='/login'/>
               
                 </Switch>
               </BidderContext.Provider>
