@@ -8,6 +8,7 @@ import './App.css';
 import Nav from './components/Nav'
 import Landing from './components/Landing'
 import Login from './components/Login'
+import Register from './components/Register'
 import Seller from './components/Seller'
 import Bidder from './components/Bidder'
 
@@ -61,6 +62,7 @@ function App() {
                   : <PrivateRoute path={`/home/${userData.username}`} component={Bidder}/>
                   }
                   <Route path='/login' component={Login}/>
+                  <Route path='/register' component={Register}/>
                   <Redirect to='/login'/>
               
                 </Switch>
