@@ -11,6 +11,7 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Seller from './components/Seller'
 import Bidder from './components/Bidder'
+import LogMeIn from './components/LogMeIn'
 
 import PrivateRoute from './utils/PrivateRoute'
 import {UserContext,GlobalContext, SellerContext, BidderContext} from './utils/context'
@@ -61,7 +62,7 @@ function App() {
                   ? <PrivateRoute path={`/home/${userData.username}`} component={Seller}/>
                   : <PrivateRoute path={`/home/${userData.username}`} component={Bidder}/>
                   }
-                  <Route path='/login' component={Login}/>
+                  <Route path='/login' component={LogMeIN}/>
                   <Route path='/register' component={Register}/>
                   <Redirect to='/login'/>
               
