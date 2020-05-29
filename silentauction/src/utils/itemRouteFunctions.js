@@ -25,9 +25,9 @@ export function updateItem(id,cb,data){
     .catch(err=>console.log(err))
 }
 
-export function deleteItem(id,cb,){
+export function deleteItem(id,){
     axiosWithAuth().delete(`api/items/${id}`)
-    .then(res=>cb(res.data))
+    .then(res=>console.log('success'))
     .catch(err=>console.log(err))
 }
 

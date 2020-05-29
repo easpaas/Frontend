@@ -1,7 +1,11 @@
+
 import React,{useState,useEffect} from 'react'
+import {useHistory} from 'react-router-dom'
 import * as Yup from 'yup'
 
-export default function CreateItemForm() {
+export default function CreateItemForm(props) {
+    const {postItem} = props.data.globalData.itemFunctions
+    const {push} = useHistory()
 
     const initial = {
         title:'',
@@ -79,7 +83,10 @@ export default function CreateItemForm() {
             <input  onChange={changeHandle} type='date' name='dateClosed'/>
             <input  onChange={changeHandle} type='decimal' name='startingBid'/>
 
-            <button> send </button>
+            <button onClick={()=> {
+                postItem(formValue,console.log)
+                push('/seller-list')
+                }}> send </button>
 
             
         </form>

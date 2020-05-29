@@ -1,10 +1,12 @@
 import React,{useContext,useState} from 'react'
 import {UserContext,GlobalContext,SellerContext} from '../utils/context'
+import {BrowserRouter,Route,Link} from 'react-router-dom'
 
 import UserSidePanel from './UserSidePanel'
 import SellList from './SellList'
 import Nav from './Nav'
 import CreateMortal from './CreateMortal'
+import SellItemFull from './SellItemFull'
 
 
 export default function Seller(props) {
@@ -27,11 +29,12 @@ export default function Seller(props) {
             null 
         }    
 
-            {showSide ? < UserSidePanel 
-            userData ={userData}
+            {showSide ? 
+            
+            < UserSidePanel 
             showMortal={showMortal}
              setShowMortal={setShowMortal} 
-             data={{userData,sellerData,props}}
+             data={{userData,sellerData,globalData}}
              setShowSide={setShowSide} />
 
             :
@@ -40,10 +43,20 @@ export default function Seller(props) {
             
             </div>
 
-            <div>
-                <SellList data={{props,userData,globalData,sellerData}} />
+            <BrowserRouter>
+            <nav>
+                <Link to='/seller-list'>Seller List</Link>
+            </nav>
+                <Route path='/seller-list'>
+                    <SellList data={{props,userData,globalData,sellerData}} />
+                </Route>
+
+                <Route path='/seller-item/:id'>
+                    <SellItemFull data={{props,userData,globalData,sellerData}} />
+
+                </Route>
             
-            </div>
+            </BrowserRouter>
 
             
         </div>
