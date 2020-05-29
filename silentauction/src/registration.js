@@ -4,11 +4,11 @@ import axios from 'axios';
 import * as Yup from "yup";
 
 const initialFormValues = {
-    name: '',
-    Email: '',
-    password: '',
-    seller: false,
-    disabled:false
+    name: "",
+    Email: "",
+    password: "",
+    seller: "false",
+    disabled: "false"
 }
 
 
@@ -38,20 +38,21 @@ function Register(props) {
 
     useEffect(() => {
         formSchema.isValid(formValues).then(valid => {
-           
+
         });
     }, [formValues]);
-
+    {/*disables button if form is valid*/}
     const onChange = (event) => {
         setFormValues({
             ...formValues,
             [event.target.name]: event.target.value
         });
-
+    
 
 
     }
     const onSubmit = (event) => {
+        
         event.preventDefault();
         axios.post('https://silent-auction2-backend.herokuapp.com/api/auth/register', {
             name: formValues.name,
@@ -68,16 +69,20 @@ function Register(props) {
             });
 
     }
-
+    const [errors, setErrors] = useState({
+        name:"",
+        password:"",
+        seller: ""
+    });
 
 
 
     return (
         <form className="Register" >
             <label>Register below:</label>
-            <label>Name:<input name="name" type="text" value={formValues.username} onChange={onChange} /></label>
-            <label>Password:<input name="password" type="password" value={formValues.password} onChange={onChange} /></label>
-            <label>Seller?<input name="seller" value="seller" type="checkbox" isChecked={formValues.seller} onChange={onChange} /></label>
+            <label><h1>Name: <input name="name" type="text" value={formValues.username} onChange={onChange} /> </h1></label>
+            <label><h1>Password:<input name="password" type="password" value={formValues.password} onChange={onChange} /></h1></label>
+            <label><h1>Seller?  <input name="seller" value="seller" type="checkbox" onChange={onChange} /> </h1></label>
             <button onSubmit={onSubmit}> Register!</button>
             {/*The registration form!*/}
         </form>
